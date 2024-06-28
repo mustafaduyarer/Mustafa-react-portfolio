@@ -1,18 +1,19 @@
 {
-  "name": "react-redux-router",
+  "name": "mustafa-duyarer-portfolio-react",
   "version": "1.0.0",
-  "description": "Basic skeleton codebase for React/Redux/Router applications.",
+  "description": "Personal portfolio app built in react.",
   "scripts": {
     "preinstall": "npm set audit false",
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && webpack-dev-server --config webpack/dev.config.js --watch",
     "build": "cross-env NODE_ENV=production webpack --config webpack/prod.config.js --progress --display-error-details --color",
     "heroku-postbuild": "npm run build",
     "precommit": "eslint src",
-    "prod": "NODE_ENV=production node server.js"
+    "prod": "NODE_ENV=production node server.js",
+    "hey" : "echo 'Hi mustafa' kendi komutlarimizi ekleyebiliriz"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:bottega-code-school/js-builder.git"
+    "url": "https://github.com/mustafaduyarer/Mustafa-react-portfolio.git"
   },
   "keywords": [
     "es6",
