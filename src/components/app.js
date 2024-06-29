@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import moment from 'moment/moment';
 
-import PortfolioContainer from "./portfolio-container";
+import PortfolioContainer from "./portfolio/portfolio-container";
 
 export default class App extends Component {
   render() {
     return (
       <div className='app'>
         <h1>Mustafa Duyarer DevCamp React Starter</h1>
-        <PortfolioContainer/>
-        <PortfolioContainer/>
         <PortfolioContainer/>
         
         <h1>
