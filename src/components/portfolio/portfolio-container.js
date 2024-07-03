@@ -4,43 +4,60 @@ import PortfolioItem from "./portfolio-item";
 //State
 //Lifecycle hooks
 
-
 export default class PortfolioContainer extends Component {
   constructor() {
     super();
     // console.log("Portfolio container has rendered");
-    this.state= {
+    this.state = {
       pageTitle: "Welcome to my portfolio",
+      isLoading: false,
       data: [
-        {title: "kartal"}, 
-        {title: "Mevlana"},
-        {title: "aktisad"},
-        {title: "swerige zaman"}
-      ]
+        { title: "kartal", category: "eCommerce" },
+        { title: "Mevlana", category: "Scheduling" },
+        { title: "aktisad", category: "Enterprise" },
+        { title: "swerige zaman", category: "eCommerce" },
+      ],
     };
-   
+    this.handleFilter = this.handleFilter.bind(this);
   }
-portfolioItems(){
- // const data = ["kartal", "Mevlana","aktisad","swerige zaman"];
 
-  return this.state.data.map(item => {
-   return <PortfolioItem title={item.title} url={"google.com"}/>;
-   //return <h1>{item}</h1>
-  });
-}
+  handleFilter(filter) {
+    this.setState({
+      data: this.state.data.filter((item) => {
+        return item.category === filter;
+      }),
+    });
+  }
 
+  portfolioItems() {
+    // const data = ["kartal", "Mevlana","aktisad","swerige zaman"];
 
+    return this.state.data.map((item) => {
+      return <PortfolioItem title={item.title} url={"google.com"} />;
+      //return <h1>{item}</h1>
+    });
+  }
 
   render() {
+    if(this.state.isLoading){
+      return <div>Loading...</div>
+    }
     return (
       <div>
         <h1>{this.state.pageTitle}</h1>
         <h2>Portfolio items go here updated...</h2>
-      
-        {this.portfolioItems()}
 
-      
-       
+        <button onClick={() => this.handleFilter("eCommerce")}>
+          eCommerce
+        </button>
+        <button onClick={() => this.handleFilter("Scheduling")}>
+          Scheduling
+        </button>
+        <button onClick={() => this.handleFilter("Enterprise")}>
+          Enterprise
+        </button>
+
+        {this.portfolioItems()}
       </div>
     );
   }
