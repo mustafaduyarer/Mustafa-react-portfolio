@@ -18,7 +18,7 @@ export default class PortfolioContainer extends Component {
         {title: "swerige zaman"}
       ]
     };
-   
+    this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this);
   }
 portfolioItems(){
  // const data = ["kartal", "Mevlana","aktisad","swerige zaman"];
@@ -29,7 +29,11 @@ portfolioItems(){
   });
 }
 
-
+handlePageTitleUpdate(){
+  this.setState({
+    pageTitle: "Someting Else"
+  });
+}
 
   render() {
     return (
@@ -39,7 +43,9 @@ portfolioItems(){
       
         {this.portfolioItems()}
 
-      
+        <hr/>
+
+        <button onClick={this.handlePageTitleUpdate}>Change Title</button>
        
       </div>
     );
