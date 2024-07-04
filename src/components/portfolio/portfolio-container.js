@@ -12,10 +12,14 @@ export default class PortfolioContainer extends Component {
       pageTitle: "Welcome to my portfolio",
       isLoading: false,
       data: [
-        { title: "kartal", category: "eCommerce" },
-        { title: "Mevlana", category: "Scheduling" },
-        { title: "aktisad", category: "Enterprise" },
-        { title: "swerige zaman", category: "eCommerce" },
+        { title: "kartal", category: "eCommerce", slug: "kartal" },
+        { title: "Mevlana", category: "Scheduling", slug: "Mevlana" },
+        { title: "aktisad", category: "Enterprise", slug: "aktisad" },
+        {
+          title: "swerige zaman",
+          category: "eCommerce",
+          slug: "swerige-zaman",
+        },
       ],
     };
     this.handleFilter = this.handleFilter.bind(this);
@@ -33,14 +37,14 @@ export default class PortfolioContainer extends Component {
     // const data = ["kartal", "Mevlana","aktisad","swerige zaman"];
 
     return this.state.data.map((item) => {
-      return <PortfolioItem title={item.title} url={"google.com"} />;
+      return <PortfolioItem title={item.title} url={"google.com"} slug={item.slug} />;
       //return <h1>{item}</h1>
     });
   }
 
   render() {
-    if(this.state.isLoading){
-      return <div>Loading...</div>
+    if (this.state.isLoading) {
+      return <div>Loading...</div>;
     }
     return (
       <div>
