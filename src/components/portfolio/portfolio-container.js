@@ -47,9 +47,12 @@ export default class PortfolioContainer extends Component {
     // const data = ["kartal", "Mevlana","aktisad","swerige zaman"];
 
     return this.state.data.map((item) => {
-      console.log('item data', item);
-      
-      return <PortfolioItem key={item.id} title={item.name} url={item.url} slug={item.id} />;
+      // console.log('portfolio item', item);
+  
+      return <PortfolioItem 
+      key={item.id} 
+      item={item}
+      />;
       //return <h1>{item}</h1>
     });
   }
@@ -67,7 +70,7 @@ export default class PortfolioContainer extends Component {
     return (
       <div>
         <h1>{this.state.pageTitle}</h1>
-        <h2>Portfolio items go here updated...</h2>
+        
 
         <button onClick={() => this.handleFilter("eCommerce")}>
           eCommerce
