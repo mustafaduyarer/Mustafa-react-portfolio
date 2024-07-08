@@ -13,10 +13,9 @@ export default class PortfolioContainer extends Component {
     this.state = {
       pageTitle: "Welcome to my portfolio",
       isLoading: false,
-      data: []
+      data: [],
     };
     this.handleFilter = this.handleFilter.bind(this);
-   
   }
 
   handleFilter(filter) {
@@ -28,38 +27,34 @@ export default class PortfolioContainer extends Component {
   }
 
   getPortfolioItems() {
-    axios.get("https://mustafaduyarer.devcamp.space/portfolio/portfolio_items")
-  .then(response => {
-    // handle success
-  
-    this.setState({
-      data: response.data.portfolio_items
-    })
-  })
-  .catch(error=> {
-    // handle error
-    console.log(error);
-  });
-  }
+    axios
+      .get("https://mustafaduyarer.devcamp.space/portfolio/portfolio_items")
+      .then((response) => {
+        // handle success
 
+        this.setState({
+          data: response.data.portfolio_items,
+        });
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  }
 
   portfolioItems() {
     // const data = ["kartal", "Mevlana","aktisad","swerige zaman"];
 
     return this.state.data.map((item) => {
       // console.log('portfolio item', item);
-  
-      return <PortfolioItem 
-      key={item.id} 
-      item={item}
-      />;
+
+      return <PortfolioItem key={item.id} item={item} />;
       //return <h1>{item}</h1>
     });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getPortfolioItems();
-
   }
 
   render() {
@@ -68,17 +63,14 @@ export default class PortfolioContainer extends Component {
     }
 
     return (
-      <div>
-        <h1>{this.state.pageTitle}</h1>
-        
-
-        <button onClick={() => this.handleFilter("eCommerce")}>
+      <div className="portfolio-items-wrapper">
+        <button className="btn" onClick={() => this.handleFilter("eCommerce")}>
           eCommerce
         </button>
-        <button onClick={() => this.handleFilter("Scheduling")}>
+        <button className="btn" onClick={() => this.handleFilter("Scheduling")}>
           Scheduling
         </button>
-        <button onClick={() => this.handleFilter("Enterprise")}>
+        <button className="btn" onClick={() => this.handleFilter("Enterprise")}>
           Enterprise
         </button>
 
