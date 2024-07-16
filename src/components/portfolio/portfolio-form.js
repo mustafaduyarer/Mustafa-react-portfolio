@@ -29,8 +29,6 @@ export default class PortfolioForm extends Component {
     formData.append("portfolio_item[category]", this.state.category);
     formData.append("portfolio_item[position]", this.state.position);
 
-    
-    
     return formData;
   }
 
@@ -47,16 +45,15 @@ export default class PortfolioForm extends Component {
         this.buildForm(),
         { withCredentials: true }
       )
-      .then(response => {
+      .then((response) => {
         console.log("response", response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("portfolio form handleSubmit error", error);
       });
 
     event.preventDefault();
   }
-
 
   render() {
     return (
@@ -90,13 +87,15 @@ export default class PortfolioForm extends Component {
               onChange={this.handleChange}
             />
 
-            <input
-              type="text"
+            <select
               name="category"
-              placeholder="Category"
               value={this.state.category}
               onChange={this.handleChange}
-            />
+            >
+              <option value="eCommerce">eCommerce</option>
+              <option value="Scheduling">Scheduling</option>
+              <option value="Enterprise">Enterprise</option>
+            </select>
           </div>
 
           <div>
