@@ -5,7 +5,6 @@ import DropzoneComponent from "react-dropzone-component";
 import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
-
 export default class PortfolioForm extends Component {
   constructor(props) {
     super(props);
@@ -24,21 +23,28 @@ export default class PortfolioForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.componentConfig = this.componentConfig.bind(this);
-this.djsConfig = this.djsConfig.bind(this);
+    this.djsConfig = this.djsConfig.bind(this);
+    this.handleThumbDrop = this.handleThumbDrop.bind(this);
+  }
+
+  handleThumbDrop() {
+    return {
+      addedfile: (file) => this.setState({ thumb_image: file }),
+    };
   }
 
   componentConfig() {
     return {
       iconFiletypes: [".jpg", ".png"],
       showFiletypeIcon: true,
-      postUrl: "https://httpbin.org/post"
-    }
+      postUrl: "https://httpbin.org/post",
+    };
   }
   djsConfig() {
-return {
-  addRemoveLinks: true,
-  maxFiles: 1
-}
+    return {
+      addRemoveLinks: true,
+      maxFiles: 1,
+    };
   }
 
   buildForm() {
@@ -49,6 +55,9 @@ return {
     formData.append("portfolio_item[url]", this.state.url);
     formData.append("portfolio_item[category]", this.state.category);
     formData.append("portfolio_item[position]", this.state.position);
+    if (this.state.thumb_image) {
+      formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
+    }
 
     return formData;
   }
@@ -121,7 +130,9 @@ return {
           </div>
 
           <div>
-            <textarea rows={14} cols={150}
+            <textarea
+              rows={14}
+              cols={150}
               type="text"
               name="description"
               placeholder="Description"
@@ -132,8 +143,9 @@ return {
 
           <div className="image-uploaders">
             <DropzoneComponent
-            config={this.componentConfig()}
-            djsConfig={this.djsConfig()}
+              config={this.componentConfig()}
+              djsConfig={this.djsConfig()}
+              eventHandlers={this.handleThumbDrop()}
             />
           </div>
 
