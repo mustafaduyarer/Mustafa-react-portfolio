@@ -9,10 +9,18 @@ export default class BlogForm extends Component {
     this.state = {
       title: "",
       blog_status: "",
+      content: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRichTextEditorChange = handleRichTextEditorChange.bind(this);
+  }
+
+  handleRichTextEditorChange(content) {
+    this.setState({
+      content: content,
+    });
   }
 
   buildForm() {
@@ -20,6 +28,7 @@ export default class BlogForm extends Component {
 
     formData.append("portfolio_blog[title]", this.state.title);
     formData.append("portfolio_blog[blog_status]", this.state.blog_status);
+    formData.append("portfolio_blog[content]", this.state.content);
 
     return formData;
   }
@@ -31,15 +40,16 @@ export default class BlogForm extends Component {
         this.buildForm(),
         { withCredentials: true }
       )
-      .then((response) => {
-        this.props.handleSuccessfullFormSubmission(
-          response.data.portfolio_blog
-        );
-
+      .then(response => {
         this.setState({
           title: "",
           blog_status: "",
+          content: ""
         });
+
+        this.props.handleSuccessfullFormSubmission(
+          response.data.portfolio_blog
+        );
       })
       .catch((error) => {
         console.log("handleSubmit for blog error", error);
@@ -74,9 +84,11 @@ export default class BlogForm extends Component {
             value={this.state.blog_status}
           />
         </div>
-        
+
         <div className="one-column">
-          <RichTextEditor />
+          <RichTextEditor
+            handleRichtexteditorChange={handleRichtexteditorChange}
+          />
         </div>
 
         <button className="btn">Save</button>
