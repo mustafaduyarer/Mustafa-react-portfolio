@@ -15,7 +15,6 @@ import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
 import Icons from "../helpers/icons";
 
-
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -125,7 +124,15 @@ export default class App extends Component {
                 )}
               />
 
-              <Route path="/b/:slug" component={BlogDetail} />
+              <Route
+                path="/b/:slug"
+                render={(props) => (
+                  <BlogDetail
+                    {...props}
+                    loggedInStatus={this.state.loggedInStatus}
+                  />
+                )}
+              />
 
               {this.state.loggedInStatus === "LOGGED_IN"
                 ? this.authorizedPages()
