@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DropzoneComponent from "react-dropzone-component";
-import RichTextEditor from "../forms/rich-text-editor.";
+
+import RichTextEditor from "../forms/rich-text-editor";
 
 export default class BlogForm extends Component {
   constructor(props) {
@@ -14,30 +15,34 @@ export default class BlogForm extends Component {
       content: "",
       featured_image: "",
       apiUrl: "https://mustafaduyarer.devcamp.space/portfolio/portfolio_blogs",
-      apiAction: "post",
+      apiAction: "post"
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleRichTextEditorChange = handleRichTextEditorChange.bind(this);
-    this.conponentConfig = this.componentConfig.bind(this);
+    this.handleRichTextEditorChange = this.handleRichTextEditorChange.bind(
+      this
+    );
+
+    this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
     this.handleFeaturedImageDrop = this.handleFeaturedImageDrop.bind(this);
     this.deleteImage = this.deleteImage.bind(this);
-
     this.featuredImageRef = React.createRef();
   }
 
   deleteImage(imageType) {
     axios
       .delete(
-        `https://api.devcamp.space/portfolio/delete-portfolio-blog-image/${this.props.blog.id}?image_type=${imageType}`,
+        `https://api.devcamp.space/portfolio/delete-portfolio-blog-image/${
+          this.props.blog.id
+        }?image_type=${imageType}`,
         { withCredentials: true }
       )
-      .then((response) => {
+      .then(response => {
         this.props.handleFeaturedImageDelete();
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("deleteImage error", error);
       });
   }
@@ -49,37 +54,37 @@ export default class BlogForm extends Component {
         title: this.props.blog.title,
         blog_status: this.props.blog.blog_status,
         content: this.props.blog.content,
-        apiUrl: `https://mustafaduyarer.devcamp.space/portfolio/portfolio_blogs/${this.props.blog.id}`,
-        apiAction: "patch",
+        apiUrl: `https://mustafaduyarer.devcamp.space/portfolio/portfolio_blogs/${
+          this.props.blog.id
+        }`,
+        apiAction: "patch"
       });
     }
-  }
-
-  handleFeaturedImageDrop() {
-    return {
-      addedfile: (file) => this.setState({ featured_image: file }),
-    };
-  }
-
-  djsConfig() {
-    return {
-      addRemoveLink: true,
-      maxFiles: 1,
-    };
   }
 
   componentConfig() {
     return {
       iconFiletypes: [".jpg", ".png"],
       showFiletypeIcon: true,
-      postUrl: "https://httpbin.org/post",
+      postUrl: "https://httpbin.org/post"
+    };
+  }
+
+  djsConfig() {
+    return {
+      addRemoveLinks: true,
+      maxFiles: 1
+    };
+  }
+
+  handleFeaturedImageDrop() {
+    return {
+      addedfile: file => this.setState({ featured_image: file })
     };
   }
 
   handleRichTextEditorChange(content) {
-    this.setState({
-      content: content,
-    });
+    this.setState({ content });
   }
 
   buildForm() {
@@ -131,13 +136,12 @@ export default class BlogForm extends Component {
         console.log("handleSubmit for blog error", error);
       });
 
-
     event.preventDefault();
   }
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   }
 
@@ -164,7 +168,7 @@ export default class BlogForm extends Component {
 
         <div className="one-column">
           <RichTextEditor
-            handleRichtexteditorChange={handleRichtexteditorChange}
+            handleRichTextEditorChange={this.handleRichTextEditorChange}
             editMode={this.props.editMode}
             contentToEdit={
               this.props.editMode && this.props.blog.content
@@ -180,7 +184,7 @@ export default class BlogForm extends Component {
               <img src={this.props.blog.featured_image_url} />
 
               <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("featured-image")}>
+                <a onClick={() => this.deleteImage("featured_image")}>
                   Remove file
                 </a>
               </div>
