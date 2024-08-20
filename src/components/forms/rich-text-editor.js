@@ -77,4 +77,4 @@ export default class RichTextEditor extends Component {
       </div>
     );
   }
-}
+}//yorum
