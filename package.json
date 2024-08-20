@@ -1,6 +1,9 @@
 {
   "name": "mustafa-duyarer-portfolio-react",
   "version": "1.0.0",
+  "engines": {
+    "node": "20.x"
+  },
   "description": "Personal portfolio app built in react.",
   "scripts": {
     "preinstall": "npm set audit false",
