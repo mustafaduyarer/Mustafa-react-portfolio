@@ -78,4 +78,5 @@ export default class RichTextEditor extends Component {
     );
   }
 }//yorum eklendi
+//Yeni yorum eklendi
 
