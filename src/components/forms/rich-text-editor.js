@@ -80,3 +80,4 @@ export default class RichTextEditor extends Component {
 }
 //Yeni yorum eklendi
 //yorum 
+//yeni yorum eklendi
