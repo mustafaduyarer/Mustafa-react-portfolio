@@ -79,7 +79,7 @@ export default class RichTextEditor extends Component {
   }
 }
 //yorum eklendi
-
+//ne yorummus arkadas
 //yeni yorum eklendi
 //yeni yorum benden
 
