@@ -77,11 +77,9 @@ export default class RichTextEditor extends Component {
       </div>
     );
   }
-}
-//yeni yorum
-//yorum yeni
-//yorumuuz
-//yorum eklendi
+}//yeni yorum eklendi
+
+
 
 
 
